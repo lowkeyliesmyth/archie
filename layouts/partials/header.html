@@ -27,6 +27,11 @@
 	{{- else if or (isset .Site.Params "social") (eq .Site.Params.mode "toggle") -}}
 		<script src="{{ absURL "js/feather.min.js" }}"></script>
 	{{ end }}
+	{{ if not hugo.IsServer }}
+	{{ if (.Site.Params.UmamiAnalytics.enabled ) }}
+	{{ partial "umami_analytics.html" . }}
+	{{ end }}
+	{{ end }}
 	{{ if .Site.Params.useCDN | default false -}}
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
