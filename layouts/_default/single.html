@@ -3,8 +3,10 @@
 	<article>
 		<div class="title">
 			<h1 class="title">{{ .Title }}</h1>
-			<div class="meta"> {{ if and (isset .Params "showthedate") (.Site.Params.ShowDatesOnPosts) }} Posted on {{ dateFormat ":date_medium" .Date }} {{ end }}
-			{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
+			<div class="meta">{{ dateFormat ":date_medium" .Date }}
+			{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}
+			{{ if .Lastmod }}<br> <strong>Updated</strong> {{ .Lastmod | time.Format ":date_medium" }} {{ end }}
+			</div>
 		</div>
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
